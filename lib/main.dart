@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/landingPage.dart';
 import 'package:quiz/showData.dart';
 
 void main() {
@@ -10,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      // ),
-      home: ShowData(),
+      theme: ThemeData(
+          // primarySwatch: Colors.blue,
+          ),
+      home: LandingPage(),
     );
   }
 }

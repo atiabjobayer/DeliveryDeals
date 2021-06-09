@@ -49,4 +49,6 @@ class Api {
 
     return _getRestaurantsFromLocation(pinLocation, searchRadius);
   }
+
+  checkValidLogin(String username, String password) {}
 }
