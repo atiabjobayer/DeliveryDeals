@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
+import 'package:quiz/menuTypes.dart';
 
 import 'ApiService.dart';
 
@@ -111,33 +112,36 @@ class _LandingPageState extends State<LandingPage> {
         foregroundColor: Colors.black,
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'ALL MERCHANTS',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.black,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'My Address Full',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
+        title: InkWell(
+          onTap: () => print("App Bar Pressed"),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'ALL MERCHANTS',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
                 ),
-                Icon(Icons.keyboard_arrow_down),
-              ],
-            )
-          ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'My Address Full',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Icon(Icons.keyboard_arrow_down),
+                ],
+              )
+            ],
+          ),
         ),
         actions: [
           IconButton(
@@ -221,65 +225,82 @@ class _LandingPageState extends State<LandingPage> {
                         for (int index = 0;
                             index < (data as dynamic).length;
                             index++) ...[
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                              vertical: 10,
-                            ),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  data[index].cardPhoto,
-                                  width: 100,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MenuTypes(
+                                    data[index].id,
+                                    data[index].name,
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      data[index].name,
-                                      style: TextStyle(
-                                        fontSize: 20,
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: 10,
+                              ),
+                              child: Row(
+                                children: [
+                                  Image.network(
+                                    data[index].cardPhoto,
+                                    width: 100,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        data[index].name,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      data[index].category,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w100,
+                                      Text(
+                                        data[index].category,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w100,
+                                        ),
                                       ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.delivery_dining,
-                                          size: 15,
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.delivery_dining,
+                                            size: 15,
+                                            color: Colors.green,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            data[index].preparationTime,
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Text(
+                                        "Order Now",
+                                        style: TextStyle(
+                                          fontSize: 15,
                                           color: Colors.green,
                                         ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          data[index].preparationTime,
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      "Order Now",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.green,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
+                          ),
+                          Divider(
+                            color: Colors.grey,
                           ),
                         ]
                       ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'ApiService.dart';
-import 'models/restaurant.dart';
+import 'models/restaurantSummary.dart';
 
 class ShowData extends StatelessWidget {
   const ShowData({Key? key}) : super(key: key);
